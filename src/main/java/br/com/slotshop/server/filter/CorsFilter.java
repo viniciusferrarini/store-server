@@ -1,3 +1,4 @@
+/*
 package br.com.slotshop.server.filter;
 
 import java.io.IOException;
@@ -15,9 +16,11 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+*/
 /**
  * Created by vinic on 22/06/2017.
- */
+ *//*
+
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
@@ -43,4 +46,4 @@ public class CorsFilter implements Filter {
     @Override
     public void init(FilterConfig config) throws ServletException {
     }
-}
+}*/
