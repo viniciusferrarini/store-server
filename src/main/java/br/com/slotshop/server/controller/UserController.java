@@ -17,9 +17,12 @@ import java.util.List;
 @RequestMapping("user")
 public class UserController {
 
-    @GetMapping
-    public Principal principal(Principal principal) {
-        return principal;
+    @Autowired
+    private UserService service;
+
+    @GetMapping("userLogged")
+    public User userLogged(Principal principal){
+        return service.findByEmail(principal.getName());
     }
 
 }
