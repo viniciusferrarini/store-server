@@ -23,5 +23,9 @@ public class Department {
     @NotEmpty
     @Column(length = 100, nullable = false)
     private String name;
+    
+    @NotEmpty
+    @Column(length = 100, nullable = false)
+    private String description;
 
 }
