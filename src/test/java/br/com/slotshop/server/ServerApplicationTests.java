@@ -1,4 +1,3 @@
-/*
 package br.com.slotshop.server;
 
 import org.junit.Test;
@@ -15,4 +14,3 @@ public class ServerApplicationTests {
 	}
 
 }
-*/
