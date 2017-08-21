@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ValidationException;
 import java.io.IOException;
 
 @Component
@@ -23,7 +24,11 @@ public class CorsFilter implements Filter {
         if ("OPTIONS".equalsIgnoreCase(((HttpServletRequest) req).getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
-            chain.doFilter(req, res);
+            try {
+                chain.doFilter(req, res);
+            } catch (ValidationException e){
+                e.getMessage();
+            }
         }
     }
 
@@ -34,4 +39,5 @@ public class CorsFilter implements Filter {
     @Override
     public void init(FilterConfig config) throws ServletException {
     }
+
 }
