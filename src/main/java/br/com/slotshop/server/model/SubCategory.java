@@ -23,7 +23,7 @@ public class SubCategory {
     private Long id;
 
     @Column(length = 100, nullable = false)
-    @NotEmpty
+    @NotEmpty(message = "Nome não pode ser vazio!")
     private String description;
 
     @JoinColumn(name = "categoryId", referencedColumnName = "id")
