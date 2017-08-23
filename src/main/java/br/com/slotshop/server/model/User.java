@@ -28,6 +28,8 @@ import java.util.List;
 @AllArgsConstructor
 public class User implements UserDetails {
 
+    //INSERT INTO `slotshop`.`user` (`email`, `name`, `password`) VALUES ('viniciusferrarini@outlook.com', 'Vinicius', '$2a$06$x7BDDZrwBUbiVeUPDpzawe8jBSbtyexcUZfz7IbUzBcWapCLRTS6S');
+
     private static final long serialVersionUID = 1L;
 
     @Id

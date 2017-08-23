@@ -55,7 +55,10 @@ public class Product implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private SubCategory subCategory;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Model> model = new ArrayList<>();
+    @Fetch(FetchMode.SELECT)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JsonManagedReference
+    private List<ProductModel> models;
+
 
 }

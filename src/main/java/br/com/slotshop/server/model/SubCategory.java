@@ -23,11 +23,11 @@ public class SubCategory {
     private Long id;
 
     @Column(length = 100, nullable = false)
-    @NotEmpty(message = "Nome não pode ser vazio!")
-    private String description;
+    @NotEmpty
+    private String name;
 
     @JoinColumn(name = "categoryId", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Category name;
+    private Category category;
 
 }

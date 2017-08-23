@@ -1,11 +1,12 @@
 package br.com.slotshop.server.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,11 +19,16 @@ public class Model implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "model")
+    private String model;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Product> product = new ArrayList<>();
+    @JoinColumn(name = "subCategoryId", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private SubCategory subCategory;
+
+    @Fetch(FetchMode.SELECT)
+    @OneToMany(mappedBy = "model", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JsonManagedReference
+    private List<ProductModel> models;
 
 }
