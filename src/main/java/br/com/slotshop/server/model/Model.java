@@ -29,11 +29,8 @@ public class Model implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @JoinColumn(name = "subCategoryId", referencedColumnName = "id")
+    @JoinColumn(name = "subCategoryId")
     @ManyToOne(fetch = FetchType.EAGER)
     private SubCategory subCategory;
-
-    @OneToMany(mappedBy = "model", fetch = FetchType.EAGER)
-    private List<ProductModel> models;
 
 }
