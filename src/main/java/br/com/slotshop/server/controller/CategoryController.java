@@ -1,10 +1,20 @@
 package br.com.slotshop.server.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
+import br.com.slotshop.server.model.Category;
+import br.com.slotshop.server.service.CategoryService;
+import br.com.slotshop.server.service.CrudService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@Validated
-public class CategoryController {
+@RestController
+@RequestMapping("category")
+public class CategoryController extends RestCrudController<Category, Long> {
 
+    @Autowired private CategoryService categoryService;
+
+    @Override
+    protected CrudService<Category, Long> getService() {
+        return categoryService;
+    }
 }

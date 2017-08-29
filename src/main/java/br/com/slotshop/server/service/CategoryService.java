@@ -1,4 +1,8 @@
 package br.com.slotshop.server.service;
 
-public interface CategoryService {
+import br.com.slotshop.server.model.Category;
+
+public interface CategoryService extends CrudService<Category, Long> {
+
+
 }

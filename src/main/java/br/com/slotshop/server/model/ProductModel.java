@@ -24,12 +24,10 @@ public class ProductModel implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "model")
-    @JsonBackReference
     private Model model;
 
     @ManyToOne
     @JoinColumn(name = "product")
-    @JsonBackReference
     private Product product;
 
 }
