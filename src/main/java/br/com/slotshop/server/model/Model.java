@@ -3,15 +3,10 @@ package br.com.slotshop.server.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.codehaus.jackson.annotate.JsonBackReference;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Data

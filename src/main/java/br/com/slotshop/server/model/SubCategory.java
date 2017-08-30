@@ -1,5 +1,6 @@
 package br.com.slotshop.server.model;
 
+import br.com.slotshop.server.enumeration.YesNo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -32,5 +34,9 @@ public class SubCategory implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category", referencedColumnName = "id")
     private Category category;
+
+    @NotNull
+    @Column(nullable = false)
+    private Boolean connectProducts;
 
 }

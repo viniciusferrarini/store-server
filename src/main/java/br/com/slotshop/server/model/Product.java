@@ -48,11 +48,11 @@ public class Product implements Serializable {
     private Double value;
 
     @JoinColumn(name = "brandId", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Brand brand;
 
     @JoinColumn(name = "subCategoryId", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private SubCategory subCategory;
 
     @Fetch(FetchMode.SELECT)
