@@ -16,6 +16,6 @@ public class ProductServiceImpl extends CrudServiceImpl<Product, Long> implement
 
     @Override
     protected JpaRepository<Product, Long> getRepository() {
-        return null;
+        return productData;
     }
 }

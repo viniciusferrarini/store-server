@@ -1,7 +1,6 @@
 package br.com.slotshop.server.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import javassist.SerialVersionUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,10 +9,10 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotEmpty;
 
-
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,20 +38,18 @@ public class Product implements Serializable {
     @Column(length = 1000, nullable = false)
     private String description;
 
-    @NotEmpty
     @Column(nullable = false)
     private Integer amount;
 
-    @NotEmpty
     @Column(nullable = false)
     private Double value;
 
     @JoinColumn(name = "brandId", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Brand brand;
 
     @JoinColumn(name = "subCategoryId", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private SubCategory subCategory;
 
     @Fetch(FetchMode.SELECT)
