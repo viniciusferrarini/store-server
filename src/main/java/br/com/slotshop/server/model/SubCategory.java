@@ -30,7 +30,6 @@ public class SubCategory implements Serializable {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category", referencedColumnName = "id")
     private Category category;

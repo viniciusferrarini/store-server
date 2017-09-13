@@ -81,7 +81,7 @@ public abstract class RestCrudController<T, ID extends Serializable>  {
         return entidade;
     }
 
-    @PutMapping
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity update(@RequestBody T entidade) {
         try {
             preUpdate(entidade);

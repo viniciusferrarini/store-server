@@ -28,7 +28,7 @@ public class ProductModel implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "product")
-    //JsonBackReference
+    @JsonBackReference
     private Product product;
 
 }

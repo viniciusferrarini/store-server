@@ -10,9 +10,8 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,10 +51,10 @@ public class Product implements Serializable {
     @ManyToOne
     private SubCategory subCategory;
 
-    @Fetch(FetchMode.SELECT)
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference
-    private List<ProductModel> models;
+    @Fetch(FetchMode.SELECT)
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<ProductModel> models = new ArrayList<>();
 
 
 }
