@@ -20,7 +20,7 @@ public class Model implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "O nome deve ser preenchido!")
     @Column(name = "name")
     private String name;
 

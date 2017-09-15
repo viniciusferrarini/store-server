@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.print.attribute.standard.Media;
+import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public abstract class RestCrudController<T, ID extends Serializable>  {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity insert(@RequestBody T entidade) {
+    public @ResponseBody ResponseEntity insert(@Valid @RequestBody T entidade) {
         try {
             preInsert(entidade);
             prePersist(entidade);
@@ -82,7 +83,7 @@ public abstract class RestCrudController<T, ID extends Serializable>  {
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ResponseEntity update(@RequestBody T entidade) {
+    public @ResponseBody ResponseEntity update(@Valid @RequestBody T entidade) {
         try {
             preUpdate(entidade);
             prePersist(entidade);

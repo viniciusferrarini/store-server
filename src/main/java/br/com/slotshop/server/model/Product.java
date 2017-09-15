@@ -11,7 +11,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,8 +52,8 @@ public class Product implements Serializable {
 
     @JsonManagedReference
     @Fetch(FetchMode.SELECT)
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<ProductModel> models = new ArrayList<>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<ProductModel> models;
 
 
 }
