@@ -1,22 +1,21 @@
 package br.com.slotshop.server.controller;
 
 import br.com.slotshop.server.model.Gallery;
+import br.com.slotshop.server.model.ProductGallery;
 import br.com.slotshop.server.service.CrudService;
+import br.com.slotshop.server.service.ProductGalleryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
+import java.util.List;
 
 @RestController
 @RequestMapping("gallery")
 public class GalleryController extends RestCrudController<Gallery, Long> {
+
+    @Autowired
+    private ProductGalleryService productGalleryService;
 
     @Override
     protected CrudService<Gallery, Long> getService() {
@@ -24,19 +23,7 @@ public class GalleryController extends RestCrudController<Gallery, Long> {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public @ResponseBody String uploadMultipleFileHandler(@RequestParam("files") MultipartFile[] files) {
-
-        try {
-            for (MultipartFile file : files) {
-                Path path = Paths.get("G:/Workspace/images/" + new SimpleDateFormat("ddMMyyhhmmssSSS").format(new Date()) + ".jpg");
-                Files.deleteIfExists(path);
-                InputStream in = file.getInputStream();
-                Files.copy(in, path);
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
+    public @ResponseBody List<ProductGallery> uploadMultipleFileHandler(@RequestParam("files") MultipartFile[] files, @RequestParam("productId") Long productId) {
+        return productGalleryService.uploadPictures(files, productId);
     }
-
 }
