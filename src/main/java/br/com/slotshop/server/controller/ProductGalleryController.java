@@ -32,12 +32,12 @@ public class ProductGalleryController extends RestCrudController<ProductGallery,
         return productGalleryService;
     }
 
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @PostMapping(value = "/upload")
     public @ResponseBody List<ProductGallery> uploadMultipleFileHandler(@RequestParam("files") MultipartFile[] files, @RequestParam("productId") Long productId) {
         return productGalleryService.uploadPictures(files, productId);
     }
 
-    @RequestMapping(value = "/picture/{name}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "/picture/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
     private byte[] getFoto(@PathVariable("name") String name) {
         return productGalleryService.get(name + ".jpg", () -> {
             try {
@@ -51,9 +51,8 @@ public class ProductGalleryController extends RestCrudController<ProductGallery,
         });
     }
 
-    @Override
-    @DeleteMapping(value = "/{id}")
-    public @ResponseBody ResponseEntity delete(@PathVariable("id") Long id) {
-        return productGalleryService.deleteImageAndFile(id);
+    @PostMapping(value = "/delete")
+    public @ResponseBody ResponseEntity delete(@RequestBody ProductGallery productGallery) {
+        return productGalleryService.deleteImageAndFile(productGallery);
     }
 }

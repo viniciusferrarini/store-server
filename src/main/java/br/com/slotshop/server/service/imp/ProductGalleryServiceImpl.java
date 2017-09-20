@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -77,7 +78,9 @@ public class ProductGalleryServiceImpl extends CrudServiceImpl<ProductGallery, L
                 return fileNotFoundCallback.get();
             }
             InputStream in = new FileInputStream(arquivo);
-            return IOUtils.toByteArray(in);
+            byte[] bytes = IOUtils.toByteArray(in);
+            in.close();
+            return bytes;
         } catch (Exception e) {
             logger.error("Erro ao obter imagem");
             throw new RuntimeException(e);
@@ -85,10 +88,12 @@ public class ProductGalleryServiceImpl extends CrudServiceImpl<ProductGallery, L
     }
 
     @Override
-    public ResponseEntity deleteImageAndFile(Long id) {
-        if (deleteFile(id)){
+    @Transactional
+    public ResponseEntity deleteImageAndFile(ProductGallery productGallery) {
+
+        if (deleteFile(productGallery)){
             try {
-                productGalleryData.delete(id);
+                productGalleryData.delete(productGallery);
                 return ResponseEntity.ok().body(true);
             } catch (Exception e) {
                 return ResponseEntity.badRequest().body(e.getMessage());
@@ -98,24 +103,8 @@ public class ProductGalleryServiceImpl extends CrudServiceImpl<ProductGallery, L
         }
     }
 
-    private boolean deleteFile(Long id) {
-        /*try {
-            FileUtils.touch(new File(diretorioImagens + productGalleryData.findOne(id).getPicture()));
-            File fileToDelete = FileUtils.getFile(diretorioImagens + productGalleryData.findOne(id).getPicture());
-            if(FileUtils.deleteQuietly(fileToDelete)) {
-                return true;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;*/
-
-
-        File file = new File(diretorioImagens + productGalleryData.findOne(id).getPicture());
-        // Deleting the directory recursively with SpringUtil.
-        if (FileUtils.deleteQuietly(file)) {
-            return  true;
-        }
-        return false;
+    private boolean deleteFile(ProductGallery picture) {
+        File file = new File(diretorioImagens + picture.getPicture());
+        return FileUtils.deleteQuietly(file);
     }
 }

@@ -27,11 +27,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .and().requestMatchers().antMatchers("/user", "/oauth/authorize", "/oauth/confirm_access")
-                .and().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/user").permitAll()
-                .anyRequest().authenticated()
-                .and().csrf().disable();
+                .and()
+                    .requestMatchers().antMatchers( "/oauth/authorize", "/oauth/confirm_access")
+                .and()
+                    .authorizeRequests()
+                    .antMatchers(HttpMethod.POST, "/user").permitAll()
+                    .anyRequest()
+                    .authenticated()
+                .and()
+                    .csrf()
+                    .disable();
     }
 
     @Override

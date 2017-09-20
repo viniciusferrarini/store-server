@@ -5,8 +5,6 @@ import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 @Entity
 @Getter
@@ -14,23 +12,33 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-public class ProductGallery implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class UserAdress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty
-    @NotNull
-    private String picture;
+    private String zip;
+
+    @NotEmpty
+    private String street;
+
+    @NotEmpty
+    private Integer number;
+
+    @NotEmpty
+    private String district;
+
+    @NotEmpty
+    private String city;
+
+    @NotEmpty
+    private String country;
 
     @ManyToOne
-    @JoinColumn(name = "product")
+    @JoinColumn(name = "user")
     @JsonBackReference
-    private Product product;
+    private User user;
 
 }
-

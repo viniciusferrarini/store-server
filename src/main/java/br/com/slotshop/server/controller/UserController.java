@@ -1,6 +1,7 @@
 package br.com.slotshop.server.controller;
 
 import br.com.slotshop.server.model.User;
+import br.com.slotshop.server.service.CrudService;
 import br.com.slotshop.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,14 +16,19 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("user")
-public class UserController {
+public class UserController extends RestCrudController<User, Long> {
 
     @Autowired
-    private UserService service;
+    private UserService userService;
+
+    @Override
+    protected CrudService<User, Long> getService() {
+        return userService;
+    }
 
     @GetMapping("userLogged")
     public User userLogged(Principal principal){
-        return service.findByEmail(principal.getName());
+        return userService.findByEmail(principal.getName());
     }
 
 }

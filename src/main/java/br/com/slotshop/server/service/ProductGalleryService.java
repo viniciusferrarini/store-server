@@ -12,5 +12,5 @@ public interface ProductGalleryService extends CrudService<ProductGallery, Long>
 
     byte[] get(String file, FileNotFoundCallback fileNotFoundCallback);
 
-    ResponseEntity deleteImageAndFile(Long id);
+    ResponseEntity deleteImageAndFile(ProductGallery productGallery);
 }

@@ -1,21 +1,18 @@
 package br.com.slotshop.server.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,6 +42,14 @@ public class User implements UserDetails {
 
     @NotEmpty
     private String password;
+
+    @NotEmpty
+    private String cpfCnpj;
+
+    @JsonManagedReference
+    @Fetch(FetchMode.SELECT)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<UserAdress> adress;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
