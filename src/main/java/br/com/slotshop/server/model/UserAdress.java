@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -24,7 +26,7 @@ public class UserAdress {
     @NotEmpty
     private String street;
 
-    @NotEmpty
+    @Min(1)
     private Integer number;
 
     @NotEmpty

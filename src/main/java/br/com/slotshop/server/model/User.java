@@ -1,5 +1,6 @@
 package br.com.slotshop.server.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,6 +41,7 @@ public class User implements UserDetails {
     @Email
     private String email;
 
+    @JsonIgnore
     @NotEmpty
     private String password;
 
