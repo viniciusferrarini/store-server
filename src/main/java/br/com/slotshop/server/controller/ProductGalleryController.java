@@ -45,7 +45,7 @@ public class ProductGalleryController extends RestCrudController<ProductGallery,
                 InputStream in = resource.getInputStream();
                 return IOUtils.toByteArray(in);
             } catch (Exception e) {
-                logger.error("Erro ao obter imagem padrão");
+                logger.error("Erro ao obter imagem");
                 return null;
             }
         });
