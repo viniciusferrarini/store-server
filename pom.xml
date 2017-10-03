@@ -5,7 +5,7 @@
 
 	<groupId>br.com.slotshop</groupId>
 	<artifactId>server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>server</name>
@@ -115,13 +115,33 @@
 		</dependencies>
 	</dependencyManagement>
 	<build>
+		<finalName>slotshop-server</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<executable>true</executable>
-				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>package-client-model</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>client-model</classifier>
+							<includes>
+								<include>**/model/**</include>
+								<include>**/service/**</include>
+                                <include>**/repository/**</include>
+                                <include>**/util/**</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

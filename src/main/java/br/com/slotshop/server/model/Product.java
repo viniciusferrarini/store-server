@@ -1,5 +1,6 @@
 package br.com.slotshop.server.model;
 
+import br.com.slotshop.server.util.DoubleUtil;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
@@ -58,5 +59,9 @@ public class Product implements Serializable {
     @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<ProductGallery> gallery;
+
+    public String getValueFormatted(){
+        return DoubleUtil.formatRealWithSimbol(this.value);
+    }
 
 }
