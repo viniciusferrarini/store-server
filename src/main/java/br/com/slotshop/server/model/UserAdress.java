@@ -1,12 +1,10 @@
 package br.com.slotshop.server.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -20,27 +18,29 @@ public class UserAdress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
-    private String zip;
+    @NotEmpty(message = "Campo descrição deve ser preenchido!")
+    private String description;
 
-    @NotEmpty
+    @NotEmpty(message = "Campo CEP deve ser preenchido!")
+    private String zipCode;
+
+    @NotEmpty(message = "Campo Rua deve ser preenchido!")
     private String street;
 
-    @Min(1)
+    @Min(value = 1, message = "Campo número deve ser preenchido!")
     private Integer number;
 
-    @NotEmpty
+    @NotEmpty(message = "Campo bairro deve ser preenchido!")
     private String district;
 
-    @NotEmpty
+    @NotEmpty(message = "Campo cidade deve ser preenchido!")
     private String city;
 
-    @NotEmpty
-    private String country;
+    @NotEmpty(message = "Campo estado deve ser preenchido!")
+    private String state;
 
     @ManyToOne
     @JoinColumn(name = "user")
-    @JsonBackReference
     private User user;
 
 }

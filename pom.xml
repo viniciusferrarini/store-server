@@ -138,6 +138,7 @@
 								<include>**/service/**</include>
                                 <include>**/repository/**</include>
                                 <include>**/util/**</include>
+								<include>**/enumeration/**</include>
 							</includes>
 						</configuration>
 					</execution>

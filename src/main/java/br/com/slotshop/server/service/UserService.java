@@ -7,6 +7,8 @@ import br.com.slotshop.server.model.User;
  */
 public interface UserService extends CrudService<User, Long>  {
 
+    User getLoggedUser();
+
     User findByEmail(String emailOrUsername);
 
 }
