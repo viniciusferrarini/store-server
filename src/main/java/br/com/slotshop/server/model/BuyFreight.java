@@ -3,12 +3,10 @@ package br.com.slotshop.server.model;
 import br.com.slotshop.server.enumeration.FreightType;
 import br.com.slotshop.server.util.DoubleUtil;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -26,7 +24,6 @@ public class BuyFreight {
     private Long id;
 
     @Column
-    @NotEmpty
     @Enumerated(EnumType.STRING)
     private FreightType freightType;
 
@@ -38,11 +35,6 @@ public class BuyFreight {
 
     @Column(nullable = true)
     private String trackingCode;
-
-    @OneToOne
-    @JoinColumn(name = "buy")
-    @JsonBackReference
-    private Buy buy;
 
     public String valueFormatted(){
         if (this.value != null){

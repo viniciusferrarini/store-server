@@ -36,11 +36,6 @@ public class BuyPayment implements Serializable {
     @Column(nullable = true)
     private Double totalParcel;
 
-    @OneToOne
-    @JoinColumn(name = "buy")
-    @JsonBackReference
-    private Buy buy;
-
     public String discountsFormatted(){
         if (this.discounts != null){
             return DoubleUtil.formatRealWithSimbol(this.discounts);

@@ -26,14 +26,14 @@ public class Buy implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "buy", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private BuyFreight freight;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "buy", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private BuyPayment payment;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "buy", cascade = CascadeType.ALL)
-    private BuyAdress adress;
+    @OneToOne(cascade = CascadeType.MERGE)
+    private UserAdress adress;
 
     @JsonManagedReference
     @Fetch(FetchMode.SELECT)

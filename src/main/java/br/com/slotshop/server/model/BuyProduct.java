@@ -1,15 +1,13 @@
 package br.com.slotshop.server.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -36,6 +34,8 @@ public class BuyProduct implements Serializable {
     @JoinColumn(name = "buy")
     @JsonBackReference
     private Buy buy;
+
+
 
 
 }
