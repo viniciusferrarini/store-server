@@ -64,4 +64,11 @@ public class Product implements Serializable {
         return DoubleUtil.formatRealWithSimbol(this.value);
     }
 
+    public String getFirstPictureFromGallery(){
+        if(this.gallery!= null && !this.gallery.isEmpty()) {
+            return this.gallery.get(0).getPicture();
+        }
+        return "0";
+    }
+
 }

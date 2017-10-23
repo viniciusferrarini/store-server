@@ -21,8 +21,4 @@ public class ProductController extends RestCrudController<Product, Long> {
         return productService;
     }
 
-    @GetMapping("/findFirst10")
-    public @ResponseBody Page<Product> findFirst10(){
-        return productService.findFirst10();
-    }
 }

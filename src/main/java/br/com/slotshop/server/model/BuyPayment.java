@@ -36,10 +36,26 @@ public class BuyPayment implements Serializable {
     @Column(nullable = true)
     private Double totalParcel;
 
-    public String discountsFormatted(){
+    public Double getDiscounts() {
         if (this.discounts != null){
-            return DoubleUtil.formatRealWithSimbol(this.discounts);
+            return this.discounts;
+        }
+        return 0.0;
+    }
+
+    public String getDiscountsFormatted(){
+        return DoubleUtil.formatRealWithSimbol(this.getDiscounts());
+    }
+
+    public String getTotalParcelFormatted(){
+        if (this.totalParcel != null){
+            return DoubleUtil.formatRealWithSimbol(this.totalParcel);
         }
         return "0,00";
     }
+
+    public String getPaymentTypeLabel(){
+        return this.paymentType.getLabel();
+    }
+
 }

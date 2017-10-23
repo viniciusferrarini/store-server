@@ -36,11 +36,15 @@ public class BuyFreight {
     @Column(nullable = true)
     private String trackingCode;
 
-    public String valueFormatted(){
+    public String getValueFormatted(){
         if (this.value != null){
             return DoubleUtil.formatRealWithSimbol(this.value);
         }
         return "0,00";
+    }
+
+    public String getFreightTypeLabel(){
+        return this.freightType.getLabel();
     }
 
 }

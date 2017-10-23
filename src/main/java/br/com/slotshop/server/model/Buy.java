@@ -1,6 +1,8 @@
 package br.com.slotshop.server.model;
 
 import br.com.slotshop.server.enumeration.OrderStatus;
+import br.com.slotshop.server.util.DateUtil;
+import br.com.slotshop.server.util.DoubleUtil;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
@@ -35,6 +37,9 @@ public class Buy implements Serializable {
     @OneToOne(cascade = CascadeType.MERGE)
     private UserAdress adress;
 
+    @OneToOne(cascade = CascadeType.MERGE)
+    private User user;
+
     @JsonManagedReference
     @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "buy", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
@@ -49,5 +54,36 @@ public class Buy implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column
     private OrderStatus status;
+
+    public String getTotalFormatted(){
+        return DoubleUtil.formatRealWithSimbol(this.total);
+    }
+
+    public String getDateFormatted(){
+        return DateUtil.formatDateWithMonthText(this.date);
+    }
+
+    public String getStatusLabel(){
+        return this.status.getLabel();
+    }
+
+    public Double getSubTotal(){
+        return products.stream().mapToDouble(BuyProduct::getTotal).sum();
+    }
+
+    public String getSubTotalFormatted(){
+        return DoubleUtil.formatRealWithSimbol(this.getSubTotal());
+    }
+
+    public Double getTotalBuy(){
+        Double subTotal = getSubTotal();
+        Double freightValue = this.freight.getValue();
+        Double discount = this.payment.getDiscounts() != null ? this.payment.getDiscounts() : 0.0;
+        return (subTotal - discount) + freightValue;
+    }
+
+    public String getTotalBuyFormatted(){
+        return DoubleUtil.formatRealWithSimbol(this.getTotalBuy());
+    }
 
 }

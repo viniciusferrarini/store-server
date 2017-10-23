@@ -1,5 +1,6 @@
 package br.com.slotshop.server.model;
 
+import br.com.slotshop.server.util.DoubleUtil;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
@@ -35,7 +36,8 @@ public class BuyProduct implements Serializable {
     @JsonBackReference
     private Buy buy;
 
-
-
+    public String getTotalFormatted(){
+        return DoubleUtil.formatRealWithSimbol(this.total);
+    }
 
 }

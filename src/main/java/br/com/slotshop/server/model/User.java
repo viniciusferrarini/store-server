@@ -41,17 +41,16 @@ public class User implements UserDetails {
     @Email
     private String email;
 
-    @JsonIgnore
     @NotEmpty
     private String password;
 
     @NotEmpty
     private String cpfCnpj;
 
-    /*@JsonManagedReference
+    @JsonManagedReference
     @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<UserAdress> adress;*/
+    private List<UserAdress> adress;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
