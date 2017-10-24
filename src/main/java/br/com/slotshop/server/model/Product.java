@@ -9,7 +9,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by vinic on 16/05/2017.
@@ -59,6 +61,22 @@ public class Product implements Serializable {
     @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<ProductGallery> gallery;
+
+    public Double getValueWithDiscount(){
+        return this.value - ((this.value * 10) / 100);
+    }
+
+    public String getValueWithDiscountFormatted(){
+        return DoubleUtil.formatRealWithSimbol(getValueWithDiscount());
+    }
+
+    public Double getValueParcel(){
+        return this.value / 12;
+    }
+
+    public String getValueParcelFormatted(){
+        return DoubleUtil.formatRealWithSimbol(getValueParcel());
+    }
 
     public String getValueFormatted(){
         return DoubleUtil.formatRealWithSimbol(this.value);

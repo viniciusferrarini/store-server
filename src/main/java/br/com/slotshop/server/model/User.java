@@ -47,10 +47,10 @@ public class User implements UserDetails {
     @NotEmpty
     private String cpfCnpj;
 
-    @JsonManagedReference
+    /*@JsonManagedReference
     @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<UserAdress> adress;
+    private List<UserAdress> adress;*/
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
