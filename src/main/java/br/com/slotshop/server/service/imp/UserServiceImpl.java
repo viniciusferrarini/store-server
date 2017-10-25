@@ -20,7 +20,7 @@ public class UserServiceImpl extends CrudServiceImpl<User, Long> implements User
 
     @Override
     public User getLoggedUser() {
-        if (SecurityContextHolder.getContext().getAuthentication() != null) {
+        if (!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             return userRepository.findByEmail(principal.getUsername());
         }

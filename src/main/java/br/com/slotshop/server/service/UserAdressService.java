@@ -10,5 +10,5 @@ public interface UserAdressService extends CrudService<UserAdress, Long> {
     UserAdress getUserAdressByUserAndCartZipCode(String zipCode);
 
     List<UserAdress> findByUser(User user);
-
+    
 }

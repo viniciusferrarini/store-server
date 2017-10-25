@@ -1,5 +1,7 @@
 package br.com.slotshop.server.model;
 
+import br.com.slotshop.server.util.DateUtil;
+import br.com.slotshop.server.util.StringUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -15,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,6 +49,12 @@ public class User implements UserDetails {
 
     @NotEmpty
     private String cpfCnpj;
+
+    @Column(nullable = true)
+    private Date birthday;
+
+    @Column(nullable = true)
+    private String telephone;
 
     /*@JsonManagedReference
     @Fetch(FetchMode.SELECT)
@@ -86,4 +95,12 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public String getBirthdayFormatted(){
+        if(this.birthday != null) {
+            return DateUtil.format(this.birthday);
+        }
+        return "";
+    }
+
 }

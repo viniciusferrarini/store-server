@@ -49,6 +49,9 @@ public class Buy implements Serializable {
     private Date date;
 
     @Column
+    private Date statusDate;
+
+    @Column
     private Double total;
 
     @Enumerated(EnumType.STRING)
@@ -61,6 +64,10 @@ public class Buy implements Serializable {
 
     public String getDateFormatted(){
         return DateUtil.formatDateWithMonthText(this.date);
+    }
+
+    public String getStatusDateFormatted(){
+        return DateUtil.formatDateWithMonthText(this.statusDate);
     }
 
     public String getStatusLabel(){
