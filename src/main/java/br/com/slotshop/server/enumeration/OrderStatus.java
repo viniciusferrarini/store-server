@@ -2,6 +2,7 @@ package br.com.slotshop.server.enumeration;
 
 public enum OrderStatus {
 
+    CANCELED("Cancelado"),
     ACCOMPLISHED("Pedido Realizado"),
     PAYMENTAPPROVED("Pagamento Aprovado"),
     SEPARATION("Em Separação"),

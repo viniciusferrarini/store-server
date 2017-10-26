@@ -24,4 +24,9 @@ public class BuyServiceImpl extends CrudServiceImpl<Buy, Long> implements BuySer
     public List<Buy> findByUser(User user) {
         return buyData.findByUserOrderByIdDesc(user);
     }
+
+    @Override
+    public List<Buy> findAllOrderByDateDesc() {
+        return buyData.findByOrderByDateDesc();
+    }
 }

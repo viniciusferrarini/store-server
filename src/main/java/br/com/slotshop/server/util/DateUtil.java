@@ -13,7 +13,7 @@ public class DateUtil {
     }
 
     public static String formatDateWithMonthText(Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd ' de ' MMMM ' de ' yyyy ' as ' HH:MM:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd ' de ' MMMM ' de ' yyyy ' as ' HH:mm:ss");
         return simpleDateFormat.format(date);
     }
 

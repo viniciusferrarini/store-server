@@ -9,5 +9,9 @@ import java.util.List;
 
 @Repository
 public interface BuyData extends JpaRepository<Buy, Long> {
+
     List<Buy> findByUserOrderByIdDesc(User user);
+
+    List<Buy> findByOrderByDateDesc();
+
 }

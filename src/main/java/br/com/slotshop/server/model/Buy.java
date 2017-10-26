@@ -67,7 +67,10 @@ public class Buy implements Serializable {
     }
 
     public String getStatusDateFormatted(){
-        return DateUtil.formatDateWithMonthText(this.statusDate);
+        if(this.statusDate != null) {
+            return DateUtil.formatDateWithMonthText(this.statusDate);
+        }
+        return null;
     }
 
     public String getStatusLabel(){

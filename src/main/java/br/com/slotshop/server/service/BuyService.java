@@ -9,4 +9,6 @@ public interface BuyService extends CrudService<Buy, Long> {
 
     List<Buy> findByUser(User user);
 
+    List<Buy> findAllOrderByDateDesc();
+
 }
