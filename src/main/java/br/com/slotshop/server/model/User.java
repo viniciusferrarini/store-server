@@ -1,14 +1,9 @@
 package br.com.slotshop.server.model;
 
 import br.com.slotshop.server.util.DateUtil;
-import br.com.slotshop.server.util.StringUtil;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by vinic on 19/06/2017.
@@ -34,7 +28,7 @@ public class User implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty
@@ -56,6 +50,9 @@ public class User implements UserDetails {
     @Column(nullable = true)
     private String telephone;
 
+    @Column
+    private String role;
+
     /*@JsonManagedReference
     @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
@@ -63,7 +60,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.NO_AUTHORITIES;
+        return AuthorityUtils.createAuthorityList("ROLE_" + this.role);
     }
 
     @Override

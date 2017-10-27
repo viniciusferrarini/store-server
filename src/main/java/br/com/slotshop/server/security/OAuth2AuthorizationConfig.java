@@ -31,6 +31,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
                 .withClient("app")
                 .secret("app")
                 .autoApprove(true)
+                .authorities("ROLE_ADMIN")
                 .authorizedGrantTypes("authorization_code", "refresh_token", "password", "client_credentials")
                 .scopes("openid");
     }
