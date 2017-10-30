@@ -3,7 +3,9 @@ package br.com.slotshop.server.util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class DateUtil {
 
@@ -28,6 +30,13 @@ public class DateUtil {
             throw e;
         }
         return date;
+    }
+
+    public static Date getCurrentDataMoreHours(Integer hours){
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.setTime(new Date());
+        gc.add(Calendar.HOUR, hours);
+        return gc.getTime();
     }
 
 }

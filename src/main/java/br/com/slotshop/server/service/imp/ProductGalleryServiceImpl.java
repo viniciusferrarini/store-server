@@ -51,7 +51,7 @@ public class ProductGalleryServiceImpl extends CrudServiceImpl<ProductGallery, L
         try {
             for (MultipartFile file : files) {
                 String pictureName = new SimpleDateFormat("ddMMyyhhmmssSSS").format(new Date()) + ".jpg";
-                Path path = Paths.get("G:/Workspace/images/" + pictureName);
+                Path path = Paths.get(diretorioImagens + pictureName);
                 Files.deleteIfExists(path);
                 InputStream in = file.getInputStream();
                 Files.copy(in, path);
