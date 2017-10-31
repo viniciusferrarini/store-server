@@ -53,6 +53,9 @@ public class User implements UserDetails {
     @Column
     private String role;
 
+    @Column
+    private Date registerDate;
+
     /*@JsonManagedReference
     @Fetch(FetchMode.SELECT)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
