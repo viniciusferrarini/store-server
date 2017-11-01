@@ -41,7 +41,7 @@ public class ProductGalleryController extends RestCrudController<ProductGallery,
     private byte[] getFoto(@PathVariable("name") String name) {
         return productGalleryService.get(name + ".jpg", () -> {
             try {
-                Resource resource = applicationContext.getResource("classpath:/static/images/avatar.png");
+                Resource resource = applicationContext.getResource("classpath:/static/images/no-image.jpg");
                 InputStream in = resource.getInputStream();
                 return IOUtils.toByteArray(in);
             } catch (Exception e) {

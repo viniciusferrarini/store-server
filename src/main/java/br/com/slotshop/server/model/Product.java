@@ -9,9 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by vinic on 16/05/2017.
@@ -86,7 +84,22 @@ public class Product implements Serializable {
         if(this.gallery!= null && !this.gallery.isEmpty()) {
             return this.gallery.get(0).getPicture();
         }
-        return "0";
+        return "no-image.jpg";
+    }
+
+    public String getName(){
+        return this.name.toUpperCase();
+    }
+
+    public String getNameForLink(){
+        return this.name.replace("/", "*");
+    }
+
+    public List<ProductGallery> getGallery(){
+        if (this.gallery != null && !this.gallery.isEmpty()){
+            return this.gallery;
+        }
+        return Collections.singletonList(ProductGallery.builder().picture("no-image.jpg").build());
     }
 
 }
