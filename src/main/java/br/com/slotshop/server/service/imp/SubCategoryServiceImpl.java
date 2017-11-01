@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,7 +28,7 @@ public class SubCategoryServiceImpl extends CrudServiceImpl<SubCategory, Long> i
 
     @Override
     public List<Navbar> getNavbar() {
-        return groupNav(subCategoryData.findAll());
+        return groupNav(subCategoryData.findAllByOrderByNameAsc());
     }
 
     private List<Navbar> groupNav(List<SubCategory> subCategories) {
@@ -39,11 +36,13 @@ public class SubCategoryServiceImpl extends CrudServiceImpl<SubCategory, Long> i
         Map<Category, List<SubCategory>> categoryListMap = subCategories.stream().collect(Collectors.groupingBy(SubCategory::getCategory));
         for (Category category : categoryListMap.keySet()) {
             List<SubCategory> subCategoryList = categoryListMap.get(category);
+            subCategoryList.sort(Comparator.comparing(SubCategory::getName));
             navbars.add(Navbar.builder()
                     .category(category)
                     .subCategory(subCategoryList)
                     .build());
         }
+        navbars.sort(Comparator.comparing(navbar -> navbar.getCategory().getName()));
         return navbars;
     }
 }

@@ -51,9 +51,6 @@ public class User implements UserDetails {
     private String telephone;
 
     @Column
-    private String role;
-
-    @Column
     private Date registerDate;
 
     /*@JsonManagedReference
@@ -63,7 +60,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList("ROLE_" + this.role);
+        return AuthorityUtils.NO_AUTHORITIES;
     }
 
     @Override
