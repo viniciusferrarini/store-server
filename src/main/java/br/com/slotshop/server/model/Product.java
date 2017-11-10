@@ -87,10 +87,6 @@ public class Product implements Serializable {
         return "no-image.jpg";
     }
 
-    public String getName(){
-        return this.name.toUpperCase();
-    }
-
     public String getNameForLink(){
         return this.name.replace("/", "*");
     }
