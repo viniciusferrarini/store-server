@@ -12,7 +12,7 @@ public class EmailUtil {
             Email email = new HtmlEmail();
             email.setHostName("smtp.gmail.com");
             email.setSmtpPort(587);
-            email.setAuthenticator(new DefaultAuthenticator("vncsferrarini@gmail.com", "Tomatecru79"));
+            email.setAuthenticator(new DefaultAuthenticator("mail@gmail.com", "#####"));
             email.setSSLOnConnect(true);
             email.setFrom("contato@slotshop.com.br");
             email.setSubject("Recuperação de Senha - SlotShop");
