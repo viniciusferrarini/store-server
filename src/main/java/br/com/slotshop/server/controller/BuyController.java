@@ -1,6 +1,7 @@
 package br.com.slotshop.server.controller;
 
 import br.com.slotshop.server.model.Buy;
+import br.com.slotshop.server.model.dto.BuyTotal;
 import br.com.slotshop.server.service.BuyService;
 import br.com.slotshop.server.service.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,11 @@ public class BuyController extends RestCrudController<Buy, Long> {
     @GetMapping("/findAllOrderByDateDesc")
     public @ResponseBody List<Buy> findAllOrderByDateDesc(){
         return buyService.findAllOrderByDateDesc();
+    }
+
+    @GetMapping("/findBuyAndTotalValueLastTenDays")
+    public @ResponseBody BuyTotal findBuyAndTotalValueLastTenDays(){
+        return buyService.findBuyAndTotalValueLastTenDays();
     }
 
 }

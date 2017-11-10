@@ -3,6 +3,7 @@ package br.com.slotshop.server.service.imp;
 import br.com.slotshop.server.model.User;
 import br.com.slotshop.server.repository.UserRepository;
 import br.com.slotshop.server.service.UserService;
+import br.com.slotshop.server.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.Authentication;
@@ -35,5 +36,13 @@ public class UserServiceImpl extends CrudServiceImpl<User, Long> implements User
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public Long findTotalNewUsers() {
+        return userRepository.findByRegisterDateIsGreaterThanEqual(DateUtil.getLowerDate(10))
+                .stream()
+                .mapToDouble(User::getId)
+                .count();
     }
 }

@@ -31,4 +31,9 @@ public class UserController extends RestCrudController<User, Long> {
         return userService.findByEmail(principal.getName());
     }
 
+    @GetMapping("findTotalNewUsers")
+    public @ResponseBody Long findTotalNewUsers(){
+        return userService.findTotalNewUsers();
+    }
+
 }

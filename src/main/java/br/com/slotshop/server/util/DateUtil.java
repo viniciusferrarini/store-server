@@ -39,4 +39,11 @@ public class DateUtil {
         return gc.getTime();
     }
 
+    public static Date getLowerDate(Integer days){
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.setTime(new Date());
+        gc.add(Calendar.DAY_OF_MONTH, -days);
+        return gc.getTime();
+    }
+
 }

@@ -11,4 +11,6 @@ public interface UserService extends CrudService<User, Long>  {
 
     User findByEmail(String emailOrUsername);
 
+    Long findTotalNewUsers();
+
 }
